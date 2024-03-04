@@ -1,7 +1,7 @@
 <header class="sticky-top" style="background-color: #434343;">
     <nav class="navbar navbar-expand-xl">
       <div class="container-fluid align-items-center">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="index.php">
           <img src="./assets/image/areview-header.png" alt="LOGO" width="200" height="100%">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <form class="d-flex column-gap-2 align-items-center ms-auto order-lg-2" role="search">
             <input class="form-control thin" type="search" placeholder="Search" aria-label="Search">
-            <a href="index.html"><i class="fa-solid fa-magnifying-glass" style="width: 20px;height: 100%;"></i></a>
+            <a href="index.php"><i class="fa-solid fa-magnifying-glass" style="width: 20px;height: 100%;"></i></a>
             <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
               aria-controls="offcanvasWithBothOptions">
               <i class="fa-solid fa-user" style="width: 20px; height: 100%;"></i>
@@ -19,22 +19,22 @@
           </form>
           <ul class="navbar-nav d-flex flex-fill text-center order-lg-1">
             <li class="nav-item flex-fill">
-              <a class="nav-link" href="movies.html">cinéma</a>
+              <a class="nav-link" href="movies.php">cinéma</a>
             </li>
             <li class="nav-item flex-fill">
-              <a class="nav-link" href="series.html">séries</a>
+              <a class="nav-link" href="series.php">séries</a>
             </li>
             <li class="nav-item flex-fill">
-              <a class="nav-link" href="video_game.html">gaming</a>
+              <a class="nav-link" href="video_game.php">gaming</a>
             </li>
             <li class="nav-item flex-fill">
-              <a class="nav-link" href="music.html">musique</a>
+              <a class="nav-link" href="music.php">musique</a>
             </li>
             <li class="nav-item flex-fill">
-              <a class="nav-link" href="book.html">livre</a>
+              <a class="nav-link" href="book.php">livre</a>
             </li>
             <li class="nav-item flex-fill">
-              <a class="nav-link" href="evenement.html">événements</a>
+              <a class="nav-link" href="evenement.php">événements</a>
             </li>
           </ul>
         </div>
@@ -77,11 +77,11 @@
           <a href=""> Mot de passe oublié ?</a>
         </div>
         <div class="row mt-3 text-center">
-          <a href="account.html"><button class="btn" type="submit" id="bouton_orange"> Se connecter </button> </a>
+          <a href="account.php"><button class="btn" type="submit" id="bouton_orange"> Se connecter </button> </a>
         </div>
         <div class="row my-1 text-center">
           <p>Vous n'avez pas encore de compte ? <br> Rejoignez-nous !</p>
-          <a href="login.html"><button class="btn" type="submit" id="bouton_orange"> S'inscrire </button> </a>
+          <a href="login.php"><button class="btn" type="submit" id="bouton_orange"> S'inscrire </button> </a>
         </div>
       </div>
     </div>
