@@ -47,7 +47,7 @@
 <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {?>
 <tr><td><?= $row['id'] ?></td><td><?= $row['pseudo'] ?></td><td><?= $row['email'] ?></td><td><?= $row['birth_date'] ?></td><td><?= $row['created_at'] ?></td>
     <td><a href="">Voir plus</a> </td>
-    <td><a href="">Modifier</a></td>
+    <td><a href="index_user.php?method=update&id=<?=$row['id'] ?>">Modifier</a></td>
     <td><a href="index.php?method=delete&id=<?=$row['id'] ?>">Supprimer</a> </td>
 </tr>
 <?php } ?>
