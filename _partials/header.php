@@ -1,3 +1,14 @@
+<?php 
+include 'Config/database.php'; 
+$sql = "SELECT * FROM categories";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+
+
+
+
+?>
+
 <header class="sticky-top" style="background-color: #434343;">
     <nav class="navbar navbar-expand-xl">
       <div class="container-fluid align-items-center">
@@ -18,24 +29,11 @@
             </button>
           </form>
           <ul class="navbar-nav d-flex flex-fill text-center order-lg-1">
+            <?php while($row = $stmt->fetch()){ ?>
             <li class="nav-item flex-fill">
-              <a class="nav-link" href="movies.php">cinéma</a>
+              <a class="nav-link" href="<?= $row['slug'] ?>"><?= $row['title'] ?></a>
             </li>
-            <li class="nav-item flex-fill">
-              <a class="nav-link" href="series.php">séries</a>
-            </li>
-            <li class="nav-item flex-fill">
-              <a class="nav-link" href="video_game.php">gaming</a>
-            </li>
-            <li class="nav-item flex-fill">
-              <a class="nav-link" href="music.php">musique</a>
-            </li>
-            <li class="nav-item flex-fill">
-              <a class="nav-link" href="book.php">livre</a>
-            </li>
-            <li class="nav-item flex-fill">
-              <a class="nav-link" href="evenement.php">événements</a>
-            </li>
+              <?php } ?>
           </ul>
         </div>
       </div>

@@ -3,31 +3,39 @@ include 'Config/database.php';
 // je vérifie si le formulaire a été soumis en méthode POST
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         //je vais récupérer le captch de google
-        if(empty($_POST['recaptch-response'])){
-            $message = "Veuillez valider le captcha";
-        } else {
+        // if(empty($_POST['recaptch-response'])){
+        //     $message = "Veuillez valider le captcha";
+        // } else {
             if(isset($_POST['email']) && isset($_POST['pwd'])){
                 // on enlève tous les octé null et retourne un string
                 $email = strip_tags($_POST['email']);
                 $pwd = strip_tags($_POST['pwd']);
 
                 // on vérifie que l'email existe dans la base de données
-                $sql = "SELECT * FROM users WHERE email = :email";
+                $sql = "SELECT * FROM user WHERE email = :email";
                 $stmt = $conn->prepare($sql);
                 $stmt->bindParam(':email', $email);
                 $stmt ->execute();
 
                 // on récupère le résultat de la recherche email dans la base
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
                 //on vérifie si le résultat est true
                 if($result){
                     // on vérifie si le mot de passe est correct
                     if(password_verify($pwd, $result['password'])) {
                         // on démarre la session
-                        sessison_start();
+                        session_start();
                         $_SESSION['email'] = $result['email'];
-                        header('Location: account.php');
+                        $_SESSION['role'] = $result['role'];
+                        var_dump($result['role']);
+
+                        if($result['role'] == '["ROLE_ADMIN"]'){
+                            header ('Location: admin/index.php');
+                        } else if ($result['role'] == '["ROLE_USER"]'){
+                            header('Location: account.php');
+                        }
+
+
                     } else {
                         $message = "Mot de passe incorrect";
                     }
@@ -40,10 +48,10 @@ include 'Config/database.php';
             }
         }
 
-    } else {
-        http_response_code(405);
-        die('Method Not Allowed');
-    }
+    // } else {
+    //     http_response_code(405);
+    //     // die('Method Not Allowed');
+    // }
 
 ?>
 
@@ -79,10 +87,10 @@ include 'Config/database.php';
 
 
 <?php include '_partials/footer.php'; ?>
-<script src="https://www.google.com/recaptcha/api.js?render=6LfJj4kpAAAAAG1IVLf9b5EtJ9Cq1lue2xmIRYfa"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LfPKIspAAAAAN0juhxdGNmp4VdK5fsAvFF4Bjzg"></script>
 <script>
 grecaptcha.ready(function() {
-    grecaptcha.execute('6LfJj4kpAAAAAG1IVLf9b5EtJ9Cq1lue2xmIRYfa', {action: 'homepage'}).then(function(token) {
+    grecaptcha.execute('6LfPKIspAAAAAN0juhxdGNmp4VdK5fsAvFF4Bjzg', {action: 'homepage'}).then(function(token) {
         document.getElementById('recaptchaResponse').value = token
     });
 });
