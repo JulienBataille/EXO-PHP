@@ -58,10 +58,8 @@ $sqlcinema= "SELECT article.title, article.cover, article.description, article.c
                                     <div class="row">
                                         <article class="col-4 col-lg-6 ">
                                             <a href="<?= $row['slug'] ?>">
-                                            <img class="img-fluid mt-3 rounded-5"
-                                                src="./assets/image/covers/<?= $row['cover'] ?>" alt="image film aquaman"
-                                                width="192" height="127" style="height: auto; width: auto;">
-                                                </a>
+                                                <img class="img-fluid mt-3 rounded-5" src="./assets/image/covers/<?= $row['cover'] ?>" alt="image film aquaman" width="192" height="127" style="height: auto; width: auto;">
+                                            </a>
                                         </article>
                                         <article class="col-4 col-lg-6 ">
                                             <h3 class="align-baseline text-capitalize"><strong><?= $row['title'] ?></strong></h3>
