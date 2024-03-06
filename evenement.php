@@ -1,5 +1,10 @@
 <?php
 include 'Config/database.php';
+
+$article = "SELECT * FROM article";
+$articleStatement = $conn->prepare($article);
+$articleStatement->execute();
+$articles = $articleStatement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +90,7 @@ include 'Config/database.php';
       <div class="card col-12 ms-2 col-md-3 mb-2 mx-auto" style="width: 18rem;">
         <img src="./assets/image/events/concert01.jpg" class="card-img-top" alt="..."  height="144">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
+          <h5 class="card-title"><?= $articles['title'] ?></h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         </div>
         <div class="dropdown mx-auto p-2 mb-5">

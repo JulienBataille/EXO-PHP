@@ -5,7 +5,7 @@ require_once '../vendor/autoload.php';
 $faker = Faker\Factory::create();
 
 // insert ten users into the database
-for ($i = 0; $i < 100; $i++ ) {
+for ($i = 0; $i < 10; $i++ ) {
     $sql = "INSERT INTO user (`pseudo`, `email`, `password`, `birth_date`,`is_valide`,`created_at`, `role`) 
     VALUES(:pseudo, :email, :password, :birth_date, :is_valide, :created_at, :role)";
     $stmt = $conn->prepare($sql);
@@ -16,7 +16,7 @@ for ($i = 0; $i < 100; $i++ ) {
         'birth_date' => $faker->date(),
         'is_valide' => true,
         'created_at' => $faker->date(),
-        'role' => '["ROLE_USER"]'
+        'role' => '["ROLE_USER"]',
 
     ]);
 }

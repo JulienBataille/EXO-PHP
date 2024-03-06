@@ -4,6 +4,11 @@ if(!isset($_SESSION['email'])){
 	header('Location: login.php');
 }
 include 'Config/database.php';
+
+$users = 'SELECT * FROM user';
+$stmt = $conn->prepare($users);
+$stmt->execute();;
+$user = $stmt->fetch(PDO::FETCH_ASSOC)
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +24,7 @@ include 'Config/database.php';
 		<div class="row" id="banner">
 			<div class="col-12 col-md-12">
 				<img alt="banière" class="mt-3 position-absolute marginneg " src="./assets/image/account/foret.png" style="height: 100%; width: 100%; max-height: 384px;">
-				<h2 class="position-absolute pseudo titre3 py-2 ">BodoWT</h2><img alt="Avatar" class="rounded-circle position-relative tp start-0 translate-middle ms-5" height="90px" src="./assets/image/account/avatar.png" width="90px">
+				<h2 class="position-absolute pseudo titre3 py-2 "><?= $user['pseudo']?></h2><img alt="Avatar" class="rounded-circle position-relative tp start-0 translate-middle ms-5" height="90px" src="./assets/image/account/avatar.png" width="90px">
 			</div>
 		</div>
 	</div>
@@ -515,7 +520,7 @@ include 'Config/database.php';
 	<!-- Form for account management-->
 	<div>
 		<div class="pt-4 px-14">
-			<p class="ps-1">Votre Pseudo : BodoWT</p>
+			<p class="ps-1">Votre Pseudo : <?= $user['pseudo']?></p>
 			<div class="input-group mb-3">
 				<input aria-describedby="form-control light" aria-label="name" class="form-control light" placeholder="Saisir votre nouveau Pseudo" type="text">
 			</div>
@@ -527,7 +532,7 @@ include 'Config/database.php';
 			</div>
 		</div>
 		<div class="pt-3 px-14">
-			<p class="ps-1">Votre Email : victorien.lague@gmail.com</p>
+			<p class="ps-1">Votre Email : <?= $user['email']?></p>
 			<div class="input-group">
 				<input aria-describedby="form-control light" aria-label="Email" class="form-control light" placeholder="Saisir votre nouveau Email" type="email">
 			</div>
