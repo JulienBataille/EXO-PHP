@@ -2,10 +2,10 @@
 include '../Config/database.php';
 require_once '../vendor/autoload.php';
 
-$article = "SELECT id FROM article";
-$articleStatement = $conn->prepare($article);
-$articleStatement->execute();
-$articles = $articleStatement->fetchAll();
+$articles = "SELECT id FROM article";
+$stmt = $conn->prepare($articles);
+$stmt->execute();
+$article = $stmt->fetchAll();
 
 $faker = Faker\Factory::create();
 
@@ -15,10 +15,12 @@ for ($i = 0; $i < 10; $i++) {
     $sql = "INSERT INTO picture (`name`,`alt`,`position`,`article_id`) 
             VALUES(:name, :alt, :position, :article_id)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute([
-        'name' => $faker->name(),
-        'alt' => $faker->name(),
-        'position' =>$faker->randomDigit(),
-        'article_id' => $articles[array_rand($articles)]['id']
-    ]);
+    $stmt->execute($data);
 }
+
+$data = [
+    'name' => $faker->name(),
+    'alt' => $faker->name(),
+    'position' =>$faker->randomDigit(),
+    'article_id' => $article[array_rand($article)]['id']
+];

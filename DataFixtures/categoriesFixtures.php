@@ -69,15 +69,18 @@
     foreach ($category as $key => $value) {
         $sql = "INSERT INTO categories (`slug`, `created_at`, `updated_at`, `slider`, `title`, `sio_title`,`meta_description`,`user_id`) VALUES (:slug, :created_at, :updated_at, :slider, :title, :sio_title, :meta_description, :user_id)";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([
-            'slug' => $value['slug'],
-            'created_at' => $value['CreatedAt'],
-            'updated_at' => $value['UpdatedAt'],
-            'slider' => $value['slider'], // attention en JSON
-            'title' => $value['title'],
-            'sio_title' => $value['seoTitle'],
-            'meta_description' => $value['seoDescription'],
-            'user_id' => $user[0]['id']
-        ]);
+        $stmt->execute($data);
 
     }
+
+    $data = [
+        'slug' => $value['slug'],
+        'created_at' => $value['CreatedAt'],
+        'updated_at' => $value['UpdatedAt'],
+        'slider' => $value['slider'], // attention en JSON
+        'title' => $value['title'],
+        'sio_title' => $value['seoTitle'],
+        'meta_description' => $value['seoDescription'],
+        'user_id' => $user[array_rand($user)]['id']
+
+    ];

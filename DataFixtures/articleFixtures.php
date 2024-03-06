@@ -1,43 +1,61 @@
 <?php
 include '../Config/database.php';
-require_once '../vendor/autoload.php';
+include '../vendor/autoload.php';
 
-$user = "SELECT id FROM user";
-$usersStatement = $conn->prepare($user);
-$usersStatement->execute();
-$users = $usersStatement->fetchAll();
+$users = "SELECT id FROM user";
+$stmt = $conn->prepare($users);
+$stmt->execute();
+$user = $stmt->fetchAll();
 
-$categorie = "SELECT id FROM categories";
-$categoriesStatement = $conn->prepare($categorie);
-$categoriesStatement->execute();
-$categories = $categoriesStatement->fetchAll();
+$categories = "SELECT id FROM categories";
+$stmt = $conn->prepare($categories);
+$stmt->execute();
+$category = $stmt->fetchAll();
 
 $faker = Faker\Factory::create();
 
-$distri = [
-            
-            $faker->url,
-            $faker->imageUrl(),
-            $faker->word(),
-            
-        ];
+
+
+
 
 // insérer dix utilisateurs dans la base de données
-for ($i = 0; $i < 100; $i++) {
+for ($i = 0; $i < 90; $i++) {
+
+    $distri = [];
+    for($j = 0; $j< rand(1,5); $j++){
+        $distri[] = [
+            'name' => $faker->name,
+            'url' => $faker->slug()
+        ];
+    }
+
+    $url= 'https://picsum.photos/1200/800';
+    $imageName = rand(1, 1000).'.jpg';
+    $img = '../assets/image/covers/'. $imageName;
+    
+
+
+
+    $data = [
+        'title' => $faker->sentence(),
+        'categories_id' => $category[array_rand($category)]['id'],
+        'user_id' => $user[array_rand($user)]['id'],
+        'slug' => $faker->slug(),
+        'created_at' => $faker->dateTimeThisYear()->format('Y-m-d H:i:s'),
+        'updated_at' => $faker->dateTimeThisYear()->format('Y-m-d H:i:s'),
+        'description' => $faker->paragraph(),
+        'youtube' => $faker->url(),
+        'cover' => $imageName,
+        'our_review' => $faker->text(),
+        'distribution' => json_encode($distri),
+    ];
+
+
     $sql = "INSERT INTO article (`title`, `categories_id`, `user_id`, `slug`, `created_at`, `updated_at`, `description`, `youtube`, `cover`, `our_review`, `distribution`) 
             VALUES(:title, :categories_id, :user_id, :slug, :created_at, :updated_at, :description, :youtube, :cover, :our_review, :distribution)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute([
-        'title' => $faker->sentence(),
-        'categories_id' => $categories[array_rand($categories)]['id'],
-        'user_id' => $users[array_rand($users)]['id'],
-        'slug' => $faker->slug,
-        'created_at' => $faker->date(),
-        'updated_at' => $faker->date(),
-        'description' => $faker->paragraph(),
-        'youtube' => $faker->url,
-        'cover' => $faker->imageUrl(),
-        'our_review' => $faker->text(),
-        'distribution' => json_encode($distri),
-    ]);
+    $stmt->execute($data);
+
+    file_put_contents($img, file_get_contents($url));
 }
+

@@ -9,8 +9,10 @@ for ($i = 0; $i < 10; $i++ ) {
     $sql = "INSERT INTO informations_complementaires (name, description) 
     VALUES(:name, :description)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute([
-        'name' => $faker->name(),
-        'description' => json_encode($faker->text())
-    ]);
+    $stmt->execute($data);
 }
+
+$data = [
+    'name' => $faker->name(),
+    'description' => json_encode($faker->text())
+];
