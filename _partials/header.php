@@ -1,8 +1,8 @@
 <?php 
 include 'Config/database.php'; 
 $sql = "SELECT * FROM categories";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
+$header = $conn->prepare($sql);
+$header->execute();
 
 
 
@@ -29,7 +29,7 @@ $stmt->execute();
             </button>
           </form>
           <ul class="navbar-nav d-flex flex-fill text-center order-lg-1">
-            <?php while($row = $stmt->fetch()){ ?>
+            <?php while($row = $header->fetch()){ ?>
             <li class="nav-item flex-fill">
               <a class="nav-link" href="<?= $row['slug'] ?>"><?= $row['title'] ?></a>
             </li>
