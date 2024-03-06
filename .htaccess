@@ -1,4 +1,4 @@
 # Option + FollowSymlinks
 # RewriteEngine = on 
 
-# RewiteRule ^cinema$ /movies.php [L]
+# RewriteRule ^cinema$ /movies.php [L]
