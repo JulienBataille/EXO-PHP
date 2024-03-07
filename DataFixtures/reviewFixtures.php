@@ -15,7 +15,7 @@ $articlesStatement->execute();
 $article = $articlesStatement->fetchAll();
 
 
-for ($i = 0; $i < 10; $i++ ) {
+for ($i = 0; $i < 20; $i++ ) {
     $sql = "INSERT INTO review (`note`,`description`,`created_at`, `update_at`, `article_id`, `user_id`) 
     VALUES(:note, :description, :created_at, :update_at, :article_id, :user_id)";
     $stmt = $conn->prepare($sql);

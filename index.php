@@ -47,7 +47,7 @@ $sqlcinema= "SELECT article.title, article.cover, article.description, article.c
                     <h2 class="category text-uppercase gras text-center py-2 stitre"><strong>cinéma</strong></h2>
                     <!--MOVIE-->
                     <article class="col-4">
-                        <img class="img-fluid mt-3 rounded-5" src="./assets/image/covers/28.jpg"
+                        <img class="img-fluid mt-3 rounded-5" src="./assets/image/covers/2.jpg"
                             alt="image film aquaman" width="192" height="127" style="height: auto; width: auto;">
                     </article>
                     <!--Movie section 1-->

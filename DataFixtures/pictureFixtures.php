@@ -11,16 +11,15 @@ $faker = Faker\Factory::create();
 
 
 // insérer dix commentaire dans la base de données
-for ($i = 0; $i < 10; $i++) {
+for ($i = 0; $i < 20; $i++) {
     $sql = "INSERT INTO picture (`name`,`alt`,`position`,`article_id`) 
             VALUES(:name, :alt, :position, :article_id)";
     $stmt = $conn->prepare($sql);
-    $stmt->execute($data);
+    $stmt->execute([
+        'name' => $faker->name(),
+        'alt' => $faker->name(),
+        'position' =>$faker->randomDigit(),
+        'article_id' => $article[array_rand($article)]['id']
+    ]);
 }
 
-$data = [
-    'name' => $faker->name(),
-    'alt' => $faker->name(),
-    'position' =>$faker->randomDigit(),
-    'article_id' => $article[array_rand($article)]['id']
-];
