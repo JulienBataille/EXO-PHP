@@ -27,9 +27,9 @@ $sqlseries= "SELECT article.title, article.cover, article.description, article.c
     ORDER BY article.id DESC
     Limit 6";
 
-    $series = $conn->prepare($sqlcinema);
+    $series = $conn->prepare($sqlseries);
     $series->execute();
-    $serie = $series->fetch(PDO::FETCH_ASSOC)
+
 
 ?>
 
@@ -61,7 +61,7 @@ $sqlseries= "SELECT article.title, article.cover, article.description, article.c
             <!--Category 1 title-->
             <section class="col-12">
                 <div class="row">
-                    <h2 class="category text-uppercase gras text-center py-2 stitre"><strong><?= $category['title']?></strong></h2>
+                    <h2 class="category text-uppercase gras text-center py-2 stitre"><strong>Cinéma</strong></h2>
                     <!--MOVIE-->
                     <article class="col-4">
                         <img class="img-fluid mt-3 rounded-5" src="./assets/image/covers/2.jpg"
@@ -82,6 +82,37 @@ $sqlseries= "SELECT article.title, article.cover, article.description, article.c
                                             <h3 class="align-baseline text-capitalize"><strong><?= $row['title'] ?></strong></h3>
                                             <p class="overflow-scroll"> <?= substr($row['description'],0,30) ?></p>
                                             <p>publié le<timer><?= $row['created_at'] ?></timer>
+                                        </article>
+                                    </div>
+                                </div>
+                                <?php endwhile ?>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="col-12">
+                <div class="row">
+                    <h2 class="category text-uppercase gras text-center py-2 stitre"><strong>Séries</strong></h2>
+                    <!--MOVIE-->
+                    <article class="col-4">
+                        <img class="img-fluid mt-3 rounded-5" src="./assets/image/covers/2.jpg"
+                            alt="image film aquaman" width="192" height="127" style="height: auto; width: auto;">
+                    </article>
+                    <!--Movie section 1-->
+                    <div class="col-8 pt-3">
+                        <div class="row">
+                        <?php while($rows = $series->fetch(PDO::FETCH_ASSOC)): ?>
+                                <div class="col-6">
+                                    <div class="row">
+                                        <article class="col-4 col-lg-6 ">
+                                            <a href="<?= $rows['slug'] ?>">
+                                                <img class="img-fluid mt-3 rounded-5" src="./assets/image/covers/<?= $rows['cover'] ?>" alt="image film aquaman" width="192" height="127" style="height: auto; width: auto;">
+                                            </a>
+                                        </article>
+                                        <article class="col-4 col-lg-6 ">
+                                            <h3 class="align-baseline text-capitalize"><strong><?= $rows['title'] ?></strong></h3>
+                                            <p class="overflow-scroll"> <?= substr($rows['description'],0,30) ?></p>
+                                            <p>publié le<timer><?= $rows['created_at'] ?></timer>
                                         </article>
                                     </div>
                                 </div>
