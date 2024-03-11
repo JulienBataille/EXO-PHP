@@ -74,10 +74,10 @@ include 'Config/database.php';
           <label for="validationDefault02" class="form-label">Mot de passe</label>
           <input type="password" name="pwd" class="form-control" id="validationDefault02" value="" required>
         </div>
-
+<!-- 
         <div class="col-12 mt-5 mb-2">
             <input type="hidden" id="recaptchaResponse" name="recaptcha-response">
-        </div>
+        </div> -->
         <div class="col-12 my-5 text-center">
           <button class="btn btn-primary" type="submit" id="bouton_orange">Je me connecte</button>
         </div>
