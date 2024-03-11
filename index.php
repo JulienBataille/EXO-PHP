@@ -80,7 +80,7 @@
             <!--Category 2 title-->
             <section class="col-12">
                 <div class="row">
-                    <h2 class="category text-uppercase gras text-center py-2 stitre mt-3"><strong>séries</strong></h2>
+                    <h2 class="category text-uppercase gras text-center py-2 stitre mt-3"><strong>série</strong></h2>
                     <!--SERIES-->
                     <div class="col-sm-8 pt-3">
                         <div class="row">
