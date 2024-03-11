@@ -19,7 +19,7 @@ $faker = Faker\Factory::create();
 
 
 // insérer dix utilisateurs dans la base de données
-for ($i = 0; $i < 90; $i++) {
+for ($i = 0; $i < 100; $i++) {
 
     $distri = [];
     for($j = 0; $j< rand(1,5); $j++){
