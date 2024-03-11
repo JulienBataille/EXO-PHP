@@ -19,13 +19,13 @@
 
 
 
-    for($i = 1; $i< 30; $i++) {
+    for($i = 1; $i< 200; $i++) {
         // je vais creer les articles
         /**
          * Je vais creer un JSON pour le champs distribution
          */
         $distribution = [];
-        for ($i = 0; $i < rand(1,5); $i++) {
+        for ($j = 0; $j < rand(1,5); $j++) {
             $distribution[] = [
                 'name' => $faker->name,
                 'url' => $faker->slug()
