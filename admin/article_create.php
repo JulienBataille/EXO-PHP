@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $file = $_FILES['cover'];
         $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
         $filename = uniqid() . '.' . $extension;
-        move_uploaded_file($file['tmp_name'], '../assets/img/covers/' . $filename);
+        move_uploaded_file($file['tmp_name'], '../assets/image/covers/' . $filename);
     }
 
     /**
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $file = $_FILES['files'];
                 $extension = pathinfo($file['name'][$i], PATHINFO_EXTENSION);
                 $filename = uniqid() . '.' . $extension;
-                move_uploaded_file($file['tmp_name'][$i], '../assets/img/covers/' . $filename);
+                move_uploaded_file($file['tmp_name'][$i], '../assets/image/covers/' . $filename);
                     $sql = "INSERT INTO picture  (`name`, `alt`, `position`, `article_id`)
                         VALUES (:name, :alt, :position, :article_id)";     
                     $stmt = $conn->prepare($sql);
