@@ -1,6 +1,11 @@
 <?php
 include 'Config/database.php';
 
+$sqlcategories = "SELECT * FROM categories";
+$categories = $conn->prepare($sqlcategories);
+$categories ->execute();
+$category = $categories->fetch(PDO::FETCH_ASSOC);
+
 $sqlcinema= "SELECT article.title, article.cover, article.description, article.created_at, article.slug
     FROM article
     INNER JOIN categories 
@@ -13,6 +18,18 @@ $sqlcinema= "SELECT article.title, article.cover, article.description, article.c
     $cinema->execute();
 
 
+
+$sqlseries= "SELECT article.title, article.cover, article.description, article.created_at, article.slug
+    FROM article
+    INNER JOIN categories 
+    ON article.categories_id = categories.id
+    WHERE categories.title = 'séries'
+    ORDER BY article.id DESC
+    Limit 6";
+
+    $series = $conn->prepare($sqlcinema);
+    $series->execute();
+    $serie = $series->fetch(PDO::FETCH_ASSOC)
 
 ?>
 
@@ -44,7 +61,7 @@ $sqlcinema= "SELECT article.title, article.cover, article.description, article.c
             <!--Category 1 title-->
             <section class="col-12">
                 <div class="row">
-                    <h2 class="category text-uppercase gras text-center py-2 stitre"><strong>cinéma</strong></h2>
+                    <h2 class="category text-uppercase gras text-center py-2 stitre"><strong><?= $category['title']?></strong></h2>
                     <!--MOVIE-->
                     <article class="col-4">
                         <img class="img-fluid mt-3 rounded-5" src="./assets/image/covers/2.jpg"

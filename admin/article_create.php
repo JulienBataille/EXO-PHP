@@ -1,10 +1,10 @@
 <?php
 session_start();
-if (!isset($_SESSION['email'])) {
-    header('Location: ../login.php');
+if(!isset($_SESSION['email'])){
+	header('Location: login.php');
 }
 
-include '../Config/Database.php';
+include '../Config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     /**
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $description = $_POST['description'];
     $youtube = $_POST['youtube'];
     $categorie = $_POST['category'];
-    $user_id = $_SESSION['id'];   
+    $user_id = 1; //$_SESSION['id'];   
 
     // si distribution est vide 
     if (empty($_POST['text'])) {

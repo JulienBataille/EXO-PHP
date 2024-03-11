@@ -2,16 +2,16 @@
 include '../Config/database.php';
 require_once '../vendor/autoload.php';
 
-$articles = "SELECT id FROM article";
-$stmt = $conn->prepare($articles);
-$stmt->execute();
-$article = $stmt->fetchAll();
+$article = "SELECT id FROM article";
+$articleStatement = $conn->prepare($article);
+$articleStatement->execute();
+$articles = $articleStatement->fetchAll();
 
 $faker = Faker\Factory::create();
 
 
 // insérer dix commentaire dans la base de données
-for ($i = 0; $i < 20; $i++) {
+for ($i = 0; $i < 10; $i++) {
     $sql = "INSERT INTO picture (`name`,`alt`,`position`,`article_id`) 
             VALUES(:name, :alt, :position, :article_id)";
     $stmt = $conn->prepare($sql);
@@ -19,7 +19,6 @@ for ($i = 0; $i < 20; $i++) {
         'name' => $faker->name(),
         'alt' => $faker->name(),
         'position' =>$faker->randomDigit(),
-        'article_id' => $article[array_rand($article)]['id']
+        'article_id' => $articles[array_rand($articles)]['id']
     ]);
 }
-

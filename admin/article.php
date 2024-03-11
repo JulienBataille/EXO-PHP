@@ -1,9 +1,8 @@
 <?php 
-
-// session_start();
-// if(!isset($_SESSION['email'])){
-// 	header('Location: article.php');
-// }
+session_start();
+if(!isset($_SESSION['email'])){
+	header('Location: article.php');
+}
  include '../Config/database.php';
     global $message ;
 
@@ -28,7 +27,7 @@
     
 
     //méthode pour lister les articles
-    $sql = "SELECT article.*, categories.title AS toto FROM article
+    $sql = "SELECT article.*, categories.title AS didi FROM article
     INNER JOIN categories ON article.categories_id = categories.id order by created_at DESC";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
@@ -46,18 +45,18 @@
 </head>
 <body>
 <style type="text/css">
-.tftable {font-size:12px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}
-.tftable th {font-size:12px;background-color:#acc8cc;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;text-align:left;}
-.tftable tr {background-color:#d4e3e5;}
-.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;}
-.tftable tr:hover {background-color:#ffffff;}
+.tftable {font-size:12px;color:#fbfbfb;width:100%;border-width: 1px;border-color: #686767;border-collapse: collapse;}
+.tftable th {font-size:12px;background-color:#171515;border-width: 1px;padding: 8px;border-style: solid;border-color: #686767;text-align:left;}
+.tftable tr {background-color:#2f2f2f;}
+.tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #686767;}
+.tftable tr:hover {background-color:#171515;}
 </style>
 <?= $message ?>
 <table class="tftable" border="1">
 <tr><th>Id</th><th>Image</th><th>Title</th><th>Categories</th><th>Slug</th><th>Article crée le </th><th>Détails</th><th>Modifier</th><th>Supprimer</th></tr>
 
 <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {?>
-<tr><td><?= $row['id'] ?></td><td><?= $row['cover'] ?></td><td><?= $row['title'] ?></td><td><?= $row['toto'] ?></td><td><?= $row['slug'] ?></td><td><?= $row['created_at'] ?></td>
+<tr><td><?= $row['id'] ?></td><td><?= $row['cover'] ?></td><td><?= $row['title'] ?></td><td><?= $row['didi'] ?></td><td><?= $row['slug'] ?></td><td><?= $row['created_at'] ?></td>
     <td><a href="">Voir plus</a> </td>
     <td><a href="article_update.php?method=update&id=<?=$row['id'] ?>">Modifier</a></td>
     <td><a href="article.php?method=delete&id=<?=$row['id'] ?>">Supprimer</a> </td>

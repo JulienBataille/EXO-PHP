@@ -11,13 +11,13 @@
 
     $category = [
         1 => [
-            'slug' => 'musique',
+            'slug' => 'cinema',
             'CreatedAt' => '2021-01-01 00:00:00',
             'UpdatedAt' => '2021-01-01 00:00:00',
-            'slider' => '["1.json"]',
-            'title' => 'Musique',
-            'seoTitle' => 'Tous les articles sur la musique',
-            'seoDescription' => 'Retrouvez tous les articles sur la musique',
+            'slider' => '["1.jpg"]',
+            'title' => 'cinema',
+            'seoTitle' => 'Tous les articles sur le cinema',
+            'seoDescription' => 'Retrouvez tous les articles sur le cinema',
         ],
         2 => [
             'slug' => 'series',
@@ -47,7 +47,7 @@
             'seoDescription' => 'Retrouvez les articles sur la musique',
         ],
         5 => [
-            'slug' => 'livres',
+            'slug' => 'livre',
             'CreatedAt' => '2024-04-03 00:00:00',
             'UpdatedAt' => '2024-04-03 00:00:00',
             'slider' => '["2.json"]',
@@ -65,11 +65,9 @@
             'seoDescription' => 'Retrouvez les articles sur les évenements',
         ],
     ];
-    
 
     foreach ($category as $key => $value) {
-        $sql = "INSERT INTO categories (`slug`, `created_at`, `updated_at`, `slider`, `title`, `sio_title`,`meta_description`,`user_id`)
-                 VALUES (:slug, :created_at, :updated_at, :slider, :title, :sio_title, :meta_description, :user_id)";
+        $sql = "INSERT INTO categories (`slug`, `created_at`, `updated_at`, `slider`, `title`, `sio_title`,`meta_description`,`user_id`) VALUES (:slug, :created_at, :updated_at, :slider, :title, :sio_title, :meta_description, :user_id)";
         $stmt = $conn->prepare($sql);
         $stmt->execute([
             'slug' => $value['slug'],
@@ -79,10 +77,7 @@
             'title' => $value['title'],
             'sio_title' => $value['seoTitle'],
             'meta_description' => $value['seoDescription'],
-            'user_id' => $user[array_rand($user)]['id']
-    
+            'user_id' => $user[0]['id']
         ]);
-
-        
 
     }
