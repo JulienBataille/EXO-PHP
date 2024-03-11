@@ -43,7 +43,6 @@ echo $avatar_new_name;
     $sql="INSERT INTO user (pseudo, email, password, birth_date,gender, is_valide, picture, created_at)
             VALUES (:pseudo, :email, :password, :birth_date,:gender, :is_valide, :picture, :created_at)";
     
-
     // $stmt = $req = $res
     $req = $conn->prepare($sql);
     $req->execute($data);
@@ -56,12 +55,7 @@ echo $avatar_new_name;
     if(mail($_POST['email'], $subject, $message, $header)){
         header('Location: index.php');
     }
-
-
 }
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -72,6 +66,7 @@ echo $avatar_new_name;
     <title>Document</title>
 </head>
 <body>
+    
     <form method="post" enctype="multipart/form-data">
         <input type="text" name="pseudo" placeholder="Pseudo"> <br>
         <input type="email" name="email" placeholder="Email"> <br>
@@ -86,7 +81,6 @@ echo $avatar_new_name;
 
         <button type="submit">Créer</button>
     </form>
-
 
 </body>
 </html>

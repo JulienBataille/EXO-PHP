@@ -6,9 +6,7 @@ if(!isset($_SESSION['email'])){
     include '../Config/database.php';
     global $message;
     
-
     // Methode pour update un user
-
     if(isset($_GET['method']) && $_GET['method'] == 'update'){
         if(isset($_GET['id'])) {
             $id = $_GET['id'];
@@ -18,7 +16,6 @@ if(!isset($_SESSION['email'])){
             $stmt->execute();
 
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
         }
     }
 
@@ -31,7 +28,6 @@ if(!isset($_SESSION['email'])){
             $is_valide = true;
         }else {
             $is_valide = false;
-
         }
 
         $sql="UPDATE user SET email = :email, is_valide = :is_valide

@@ -16,7 +16,7 @@ if(!isset($_SESSION['email'])){
             $stmt->bindParam(':id', $id);
             $stmt->execute();
 
-            $message = "<div class='alert alert-success text center'>L'utilisateur a été supprimé </div>";
+            $message = "<div class='alert alert-success text center'> L'utilisateur a été supprimé </div>";
         }
     }
 
@@ -24,8 +24,6 @@ if(!isset($_SESSION['email'])){
     $sql = "SELECT * FROM user";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
-
-
 ?>
 
 <!DOCTYPE html>
